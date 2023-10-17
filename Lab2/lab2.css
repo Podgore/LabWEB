@@ -5,7 +5,7 @@ body {
     height: 100vh;
 }
 
-.hui{
+.main{
     display: grid;
     grid-template-rows: auto 1fr auto;
     height: 100%;
