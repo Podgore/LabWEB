@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="lab5.css">
+    <title>
+        Корчинській
+    </title>
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <div class="header-inner-box" id="1">
+            <h1>5 Фактів про Дмитра Корчинського</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-middle-block">
+            <button onclick="swapText()">Swap Text</button>
+        </div>
+        <div class="right-middle-block" id="form">
+            <label>Enter 10 numbers separated by commas:</label>
+            <input type="text" id="numbersInput">
+            <button onclick="calculateMax()">Calculate</button>
+        </div>
+        <div class="right-big-block">
+            <div class="header2">
+
+            </div>
+            <div class="small-one">
+                <div class="left-onto-block" id="2">
+
+
+                    <label for="textInput1">Enter text 1:</label>
+                    <input type="text" id="textInput1">
+                    <br>
+
+                    <label for="textInput2">Enter text 2:</label>
+                    <input type="text" id="textInput2">
+                    <br>
+
+                    <label for="textInput3">Enter text 3:</label>
+                    <input type="text" id="textInput3">
+                    <br>
+
+
+                    <button onclick="calculateArea()">Calculate area</button>
+
+                    <p>Total: <span id="totalText"></span></p>
+                </div>
+                <div class="right-onto-block" id="6">
+                    <label for="colorSelector">Select text color:</label>
+                    <select id="colorSelector">
+                        <option value="black">Black</option>
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                    </select>
+                    <h1>Канал на ютубі</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-inner-box, block" id="block7">
+            Move your cursor outside this block to show the form elements here
+        </div>
+    </div>
+</div>
+
+<script>
+    function swapText() {
+        const headerElement = document.getElementById('1').querySelector('h1');
+        const rightBlockElement = document.getElementById('6').querySelector('h1');
+
+        const headerText = headerElement.textContent;
+        const rightBlockText = rightBlockElement.textContent;
+
+        headerElement.textContent = rightBlockText;
+        rightBlockElement.textContent = headerText;
+    }
+</script>
+
+<script>
+    function calculateArea(){
+        const first = document.getElementById('textInput1').value;
+        const second = document.getElementById('textInput2').value;
+        const third = document.getElementById('textInput3').value;
+
+        const firstElement = parseInt(first);
+        const secondElement = parseInt(second);
+        const thirdElement = parseInt(third);
+        let p = (firstElement + secondElement + thirdElement) / 2;
+        let total = Math.sqrt(p*(p-firstElement)*(p-secondElement)*(p-thirdElement));
+
+        document.getElementById('totalText').textContent = total;
+    }
+</script>
+<script>
+    // Function to calculate the number of max values
+    function calculateMax() {
+        const numbersInput = document.getElementById('numbersInput').value;
+        const numbersArray = numbersInput.split(',').map(Number); // Convert input string to an array of numbers
+        const maxNumber = Math.max(...numbersArray); // Find the maximum number
+        const countMax = numbersArray.filter(num => num === maxNumber).length; // Count occurrences of the maximum number
+
+        // Save the result to cookies
+        document.cookie = `maxCount=${countMax}; expires=Thu, 18 Dec 2100 12:00:00 UTC`;
+
+        // Show the result in a dialog window
+        alert(`The number of max values is: ${countMax}. Result saved in cookies.`);
+    }
+
+    // Function to handle reloading and removing cookies
+    function handleReload() {
+        const maxCountCookie = document.cookie.replace(/(?:(?:^|.*;\s*)maxCount\s*=\s*([^;]*).*$)|^.*$/, "$1");
+
+        if (maxCountCookie) {
+            // Show the stored information from cookies
+            alert(`Stored value in cookies: ${maxCountCookie}. Click OK to delete cookies.`);
+            document.cookie = 'maxCount=; expires=Thu, 01 Jan 1970 00:00:00 UTC'; // Delete the cookie
+            alert('Cookies deleted. Click OK to reload the page.');
+            location.reload(); // Reload the page
+        }
+    }
+
+    // Check for existing cookies on page load
+    window.onload = handleReload;
+</script>
+
+<script>
+    const block6 = document.getElementById('1');
+    const colorSelector = document.getElementById('colorSelector');
+
+    const savedColor = localStorage.getItem('textColor');
+    if (savedColor) {
+        block6.style.color = savedColor;
+        colorSelector.value = savedColor;
+    }
+
+    colorSelector.addEventListener('change', function () {
+        const selectedColor = colorSelector.value;
+        block6.style.color = selectedColor;
+
+        localStorage.setItem('textColor', selectedColor);
+    });
+</script>
+<script>
+    const block7 = document.getElementById('block7');
+
+    block7.addEventListener('mouseout', function (event) {
+        const target = event.relatedTarget;
+        if (!block7.contains(target)) {
+            block7.innerHTML = `
+                    <form id="formData">
+                        <label for="inputData">Enter data:</label>
+                        <input type="text" id="inputData">
+                        <button type="button" onclick="createTable()">Create Table</button>
+                    </form>
+                `;
+        }
+    });
+
+    function createTable() {
+        const formData = document.getElementById('formData');
+        const inputData = document.getElementById('inputData').value.trim();
+
+        if (inputData === '') {
+            alert('Please enter data');
+            return;
+        }
+
+        const tableData = inputData.split(',');
+
+        let tableHTML = '<table>';
+
+        if (tableData.length % 2 === 0) {
+            for (let i = 0; i < tableData.length; i += 2) {
+                tableHTML += `<tr><td>${tableData[i]}</td><td>${tableData[i + 1]}</td></tr>`;
+            }
+        } else {
+            for (let i = 0; i < tableData.length; i++) {
+                tableHTML += `<tr><td colspan="2">${tableData[i]}</td></tr>`;
+            }
+        }
+
+        tableHTML += '</table>';
+
+        const tableBlock = document.createElement('div');
+        tableBlock.innerHTML = tableHTML;
+        block7.appendChild(tableBlock);
+
+        localStorage.setItem('tableData', JSON.stringify(tableData));
+    }
+
+    window.onload = function() {
+        const storedTableData = localStorage.getItem('tableData');
+
+        if (storedTableData) {
+            const parsedTableData = JSON.parse(storedTableData);
+            createTableFromLocalStorage(parsedTableData);
+        }
+    }
+
+    function createTableFromLocalStorage(data) {
+        let tableHTML = '<table>';
+
+        if (data.length % 2 === 0) {
+            for (let i = 0; i < data.length; i += 2) {
+                tableHTML += `<tr><td>${data[i]}</td><td>${data[i + 1]}</td></tr>`;
+            }
+        } else {
+            for (let i = 0; i < data.length; i++) {
+                tableHTML += `<tr><td colspan="2">${data[i]}</td></tr>`;
+            }
+        }
+
+        tableHTML += '</table>';
+
+        const tableBlock = document.createElement('div');
+        tableBlock.innerHTML = tableHTML;
+        block7.appendChild(tableBlock);
+    }
+
+    window.onbeforeunload = function() {
+        localStorage.removeItem('tableData');
+    }
+</script>
+
+</body>
+</html>

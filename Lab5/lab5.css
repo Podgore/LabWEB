@@ -1,0 +1,154 @@
+body{
+    padding: 0;
+    margin:0;
+    background-color: #fffdf5;
+}
+.block {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+table {
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+td {
+    border: 1px solid black;
+    padding: 8px;
+}
+.content{
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.container {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.header,
+.footer {
+    background-color: #f5f5f5;
+    flex: 0 0 20vh;
+    justify-content: center;
+
+}
+.header-inner-box{
+    text-align: left;
+    padding: 10px;
+    margin: 25px 0 0 50px;
+    height: 100px;
+    width: 700px;
+}
+.footer-inner-box{
+    text-align: left;
+    padding: 10px;
+    margin: 25px 0 0 625px;
+    height: 100px;
+    width: 1200px;
+
+}
+.left-middle-block,
+.right-middle-block {
+    flex-direction: column;
+    width: 16%;
+    display: flex;
+    justify-content: center;
+}
+
+.right-big-block{
+    flex-direction: column;
+    width: 44%;
+    display: flex;
+
+}
+.small-one{
+    flex-direction: row;
+    display: flex;
+    height: 100%;
+}
+
+.left-onto-block,
+.right-onto-block{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-middle-block {
+    flex-direction: column;
+}
+
+.left-onto-block{
+    margin-right: 14%;
+}
+.right-onto-block{
+    margin-left: 14%;
+}
+
+.right-middle-block {
+}
+.header2{
+    flex: 0 0 20vh;
+}
+
+.button-19 {
+    background-color: rgba(245, 245, 245, 0.11);
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.button-19:after {
+    background-clip: padding-box;
+    background-color: rgba(0, 0, 0, 0.94);
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+
+.button-19:focus {
+    user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}
+
+.button-19:disabled {
+    cursor: auto;
+}
